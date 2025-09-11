@@ -1,0 +1,26 @@
+/* Estilos del footer (ya los tenías) */
+.siteFooter{ background: var(--surface,#0f1115); border-top:1px solid var(--stroke,rgba(255,255,255,.08)); padding:48px 0 20px; color: var(--text,#e5e7eb);}
+.footerTop{ display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center;}
+.footerTitle{ margin:0 0 12px; font-size:1.25rem;}
+.social{ display:flex; gap:14px;}
+.social a{ display:inline-flex; width:40px; height:40px; align-items:center; justify-content:center; border-radius:999px; background:rgba(255,255,255,.06); color:var(--text,#e5e7eb); border:1px solid var(--stroke,rgba(255,255,255,.08)); transition:transform .15s ease, background .15s ease;}
+.social a:hover{ transform:translateY(-2px); background:rgba(255,255,255,.12);}
+.powered{ margin:32px 0 0; text-align:center; color:var(--muted,#9aa4b2); font-size:.9rem;}
+
+/* SweetAlert2 (contenedor interno) */
+.swalPopup{ background: var(--card,#121216); border:1px solid var(--stroke,rgba(255,255,255,.08)); border-radius:16px; }
+.swalTitle{ color: var(--text,#e5e7eb); }
+.swalCancelBtn{ margin-left: 8px; padding: 10px 16px; background: transparent; color: var(--text,#e5e7eb); border:1px solid var(--stroke,rgba(255,255,255,.15)); border-radius:10px; }
+
+/* Form dentro del SweetAlert */
+.swalForm{ display:grid; gap:12px; }
+.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.input, .textarea{
+  width:100%; padding:12px 14px; border-radius:10px;
+  border:1px solid var(--stroke,rgba(255,255,255,.12));
+  background: var(--surface,#17171c); color: var(--text,#e5e7eb); outline:none;
+}
+.input::placeholder,.textarea::placeholder{ color: var(--muted,#9aa4b2); }
+.input:focus,.textarea:focus{ border-color: var(--primary,#7c3aed); box-shadow: 0 0 0 3px rgba(124,58,237,.25); }
+
+@media (max-width:720px){ .footerTop{ grid-template-columns:1fr; } .grid2{ grid-template-columns:1fr; } }
