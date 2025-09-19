@@ -102,7 +102,6 @@ export default function Biblioteca() {
       <section className="container section" id="eventos">
         <div className="flex-between">
           <h2>Próximos eventos</h2>
-          {/* BUSCADOR PREDICTIVO */}
           <div className="predictive-wrap" style={{ position: "relative", maxWidth: 360, width: "100%" }}>
             <input
               ref={inputRef}
@@ -236,9 +235,10 @@ export default function Biblioteca() {
         <h2>Nuestro establecimiento</h2>
         <Carousel
           images={[
-            "https://images.unsplash.com/photo-1519677100203-a0e668c92439?q=80&w=1600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1523779105320-d1cd346ff52b?q=80&w=1600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1562847671-5bf21e8d0e4b?q=80&w=1600&auto=format&fit=crop",
+            "/images/espacio/espacio1.jpg",
+            "/images/espacio/espacio2.jpg",
+            "/images/espacio/espacio3.png",
+            "/images/espacio/espacio4.jpeg",
           ]}
         />
       </section>
