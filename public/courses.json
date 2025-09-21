@@ -10,7 +10,8 @@
     "level": "Inicial",
     "style": "General",
     "desc": "Perfecto para quienes recién comienzan, sin necesidad de equipo propio.",
-    "image": "https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?q=80&w=1600&auto=format&fit=crop"
+    "image": "https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?q=80&w=1600&auto=format&fit=crop",
+    "payment_url":"https://mpago.la/1yquSuy"
   },
   {
     "id": "dj-avanzado",

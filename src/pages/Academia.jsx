@@ -9,11 +9,15 @@ export default function Academia() {
   const [q, setQ] = useState("");
   const [showAll, setShowAll] = useState(false);
 
-  useEffect(() => {
-    fetch("/courses.json")
-      .then((r) => r.json())
-      .then(setCourses);
-  }, []);
+useEffect(() => {
+  fetch("/api/courses.php")
+    .then((r) => r.json())
+    .then(setCourses)
+    .catch((err) => {
+      console.error("Error cargando cursos:", err);
+      setCourses([]); 
+    });
+}, []);
 
   useEffect(() => {
     setShowAll(false);

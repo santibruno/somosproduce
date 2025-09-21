@@ -2,24 +2,24 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-export default function CursoDetalle(){
+export default function CursoDetalle() {
   const { id } = useParams()
   const [course, setCourse] = useState(null)
 
-  useEffect(()=>{
-    fetch('/courses.json').then(r=>r.json()).then(list=>{
-      setCourse(list.find(c => c.id === id))
+  useEffect(() => {
+    fetch('/api/courses.php').then(r => r.json()).then(list => {
+      setCourse(list.find(c => String(c.id) === String(id)))
     })
-  },[id])
+  }, [id])
 
-  if(!course) return <div className="container section"><p>Cargando...</p></div>
+  if (!course) return <div className="container section"><p>Cargando...</p></div>
 
   const priceFmt = new Intl.NumberFormat('es-AR').format(course.price)
 
   return (
     <>
       <section className="hero hero-curso">
-        <div className="hero-image" style={{ backgroundImage:`url(${course.image})`}} />
+        <div className="hero-image" style={{ backgroundImage: `url(${course.image})` }} />
         <div className="container">
           <h1 className="display">{course.title}</h1>
           <p className="subtitle">{course.desc}</p>
@@ -33,14 +33,21 @@ export default function CursoDetalle(){
             <div><dt>Días</dt><dd>{course.days.join(', ')}</dd></div>
             <div><dt>Precio</dt><dd>${priceFmt} {course.currency}</dd></div>
           </dl>
-          <a className="btn btn-primary" href="#inscripcion">Inscribirse</a>
+          <a
+            className="btn btn-primary"
+            href={course.payment_url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Inscribirse
+          </a>
         </div>
       </section>
 
       <section className="section dark-gradient" id="inscripcion">
         <div className="container">
           <h2>Inscripción</h2>
-          <form className="contact-form" onSubmit={(e)=>{ e.preventDefault(); alert('En producción, este form debe postear a tu backend PHP (ej. /api/enroll.php).'); }}>
+          <form className="contact-form" onSubmit={(e) => { e.preventDefault(); alert('En producción, este form debe postear a tu backend PHP (ej. /api/enroll.php).'); }}>
             <div className="grid-2">
               <input required name="name" placeholder="Nombre y apellido" />
               <input required type="email" name="email" placeholder="Email" />
