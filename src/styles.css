@@ -284,6 +284,9 @@ body {
   .acad-inner{
     text-align: center;
   }
+  .btn-overlay{
+    text-align: center;
+  }
 }
 
 /* =================== EVENTOS (CARDS MEJORADAS) =================== */
@@ -374,6 +377,32 @@ body {
 }
 .checklist li {
   margin: 6px 0;
+}
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--primary); /* usá tu color */
+  border-radius: 14px;        /* podés poner 50% si querés círculo */
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+}
+
+.whatsapp-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 
 /* =================== COURSES (HARD-EDGE + BARRA LATERAL) =================== */

@@ -8,16 +8,34 @@ export default function Academia() {
   const [courses, setCourses] = useState([]);
   const [q, setQ] = useState("");
   const [showAll, setShowAll] = useState(false);
+  const [error, setError] = useState(null);
 
-useEffect(() => {
-  fetch("/api/courses.php")
-    .then((r) => r.json())
-    .then(setCourses)
-    .catch((err) => {
-      console.error("Error cargando cursos:", err);
-      setCourses([]); 
-    });
-}, []);
+  useEffect(() => {
+    fetch("/api/courses.php")
+      .then((r) => {
+        if (!r.ok) throw new Error("Error en la API de cursos");
+        return r.json();
+      })
+      .then((list) => {
+        if (!list || list.length === 0) {
+          setError("NO HAY CURSOS DISPONIBLES");
+          setCourses([]);
+          return;
+        }
+        const normalized = list.map((c) => ({
+          ...c,
+          days: (c.days || []).map((d) =>
+            d.replace(/^\[?\\?"?/, "").replace(/\\?"?\]?$/, "")
+          ),
+        }));
+        setCourses(normalized);
+      })
+      .catch((err) => {
+        console.error("Error cargando cursos:", err);
+        setError("NO HAY CURSOS DISPONIBLES");
+        setCourses([]);
+      });
+  }, []);
 
   useEffect(() => {
     setShowAll(false);
@@ -53,8 +71,10 @@ useEffect(() => {
           </div>
         </div>
 
-        {filtered.length === 0 ? (
-          <p className="mt-24">No encontramos cursos para “{q}”. Probá con otro término.</p>
+        {error ? (
+          <p className="mt-24">{error}</p>
+        ) : filtered.length === 0 ? (
+          <p className="mt-24">No encontramos cursos para “{q}”.</p>
         ) : (
           <>
             <div className="course-grid">

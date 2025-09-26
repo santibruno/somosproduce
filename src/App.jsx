@@ -10,6 +10,7 @@ import Footer from './components/Footer/Footer'
 import logoProduce from '../public/images/logo_produce.png'
 import logoAcademia from '../public/images/logoAcademia.png'
 import logoBiblioteca from '../public/images/logotipo_blanco.png'
+import WhatsAppButton from './components/wpp/Wpp'
 
 function useBrand() {
   const { pathname } = useLocation()
@@ -27,11 +28,14 @@ function useBrand() {
 
 export default function App(){
   const brand = useBrand()
+  const { pathname } = useLocation()
 
   useEffect(()=>{
     document.body.setAttribute('data-brand', brand.id)
   },[brand.id])
-
+ useEffect(()=>{
+    window.scrollTo(0,0)
+  },[pathname])
   return (
     <div className="app">
       <header className="site-header">
@@ -55,7 +59,7 @@ export default function App(){
           <Route path="/produce" element={<Produce/>} />
         </Routes>
       </main>
-
+      <WhatsAppButton /> 
       <Footer />
     </div>
   )
